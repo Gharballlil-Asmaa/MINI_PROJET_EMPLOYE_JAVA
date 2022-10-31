@@ -1,0 +1,105 @@
+public class Employe {
+    //Attributs
+    public int Matricule;
+    private String  Nom, Prénom;
+    private int Age;
+    private double Salaire;
+
+
+    //constructeur parametrer
+    public Employe(int Matricule,String Nom,String Prénom ,int Age , double Salaire){
+        this.Matricule = Matricule;
+        this.Nom = Nom;
+        this.Prénom = Prénom;
+        this.Age = Age;
+        this.Salaire = Salaire;
+
+    }
+
+    //Constructeur par defaut
+    public Employe(){
+        Matricule = 0;
+        Nom="";
+        Prénom = "";
+        Age= 0;
+        Salaire=0;
+    }
+
+    //Par copie
+    public  Employe(Employe E){
+        this.Matricule= E.Matricule;
+        this.Nom= E.Nom;
+        this.Prénom= E.Prénom;
+        this.Age= E.Age;
+        this.Salaire= E.Salaire;
+    }
+
+    //Getters
+    public int getMatricule(){
+        return Matricule;
+    }
+
+    public String getNom() {
+        return Nom;
+    }
+
+    public String getPrénom() {
+        return Prénom;
+    }
+
+    public int getAge() {
+        return Age;
+    }
+
+    public double getSalaire() {
+        return Salaire;
+    }
+
+    //Setters
+
+
+    public void setMatricule(int matricule) {
+        this.Matricule = matricule;
+    }
+
+    public void setNom(String nom) {
+        this.Nom = nom;
+    }
+
+    public void setPrénom(String prénom) {
+        this.Prénom = prénom;
+    }
+
+    public void setAge(int age) {
+        this.Age = age;
+    }
+
+    public void setSalaire(double salaire) {
+        this.Salaire = salaire;
+    }
+
+    @Override
+    public String toString() {
+        return "* Matricule = " + Matricule + '\n' + "* Nom = " + Nom + '\n' + "* Prenom = " + Prénom + '\n' + "* Age = " + Age + '\n' + "* Salaire = " + Salaire + '\n';
+    }
+    //creer main menu
+    public static void mainMenu(){
+        System.out.println("************************** MENU **************************");
+        System.out.println("1 - Ajouter un nouvel employé");
+        System.out.println("2 - Modifier un employé");
+        System.out.println("3 - Supprimer un employé");
+        System.out.println("4 - Afficher un employé");
+        System.out.println("5 - Afficher tous les employés");
+        System.out.println("6 - Calculer le nombre des employés ayant un salaire qui dépasse 10000");
+        System.out.println("7 - Afficher l’employé le plus âgé.");
+        System.out.println("8 - Afficher l’employé le moins âgé.");
+        System.out.println("9 - Quitter");
+        System.out.println("***********************************************************");
+        System.out.println("* Entrer votre option:");
+    }
+
+
+}
+
+
+
