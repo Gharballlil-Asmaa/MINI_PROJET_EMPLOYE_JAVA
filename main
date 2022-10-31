@@ -1,0 +1,205 @@
+import java.util.Scanner;
+import java.util.ArrayList;
+
+public class Main {
+    static Scanner sc = new Scanner(System.in);
+    static ArrayList<Employe> ArrayEmployé = new ArrayList<>();
+    public static void main (String[] args) {
+        Employe.mainMenu();;
+        int op = sc.nextInt();
+
+        while (op < 1 || op > 9) {
+            Employe.mainMenu();
+            op = sc.nextInt();
+        }
+        while (op >= 1 && op <= 9) {
+            switch (op) {
+                case 1:
+                    addEmployé();
+                    Employe.mainMenu();
+                    op = sc.nextInt();
+                    break;
+                case 2:
+                    modifierEmp();
+                    op = sc.nextInt();
+                    break;
+                case 3:
+                    remove();
+                    op =sc.nextInt();
+                    break;
+                case 4:
+                    afficherEmploye();
+                    op = sc.nextInt();
+                    break;
+                case 5:
+                   affichertous();
+                   op = sc.nextInt();
+                    break;
+                case 6:
+                    afficherSalaire();
+                    op = sc.nextInt();
+                    break;
+                case 7:
+                    plusAge();
+                    op = sc.nextInt();
+                    break;
+                case 8:
+                    moinsAge();
+                    op = sc.nextInt();
+                    break;
+                case 9:
+                    //Exist
+                    break;
+                default:
+                    System.out.println("Choix indisponible !!!");
+
+            }
+        }
+    }
+
+    //Ajouter un employé
+    public static void addEmployé () {
+        System.out.print("Donner le matricule de l'employé:");
+        int Matricule = sc.nextInt();
+        System.out.print("Donner le nom de l'employé:");
+        String Nom = sc.next();
+        System.out.print("Donner le prenom de l'employé:");
+        String Prénom = sc.next();
+        System.out.print("Donner l'age de l'employé:");
+        int Age = sc.nextInt();
+        System.out.print("Donner le salaire de l'employé:");
+        double Salaire = sc.nextDouble();
+        Employe e = new Employe(Matricule, Nom, Prénom, Age, Salaire);
+        ArrayEmployé.add(e);
+
+    }
+    //Modifier un employé
+    static void modifierEmp(){
+        System.out.print("Donner le matricule d'employe pour le modifier :");
+        int Matricule=sc.nextInt();
+        boolean ex =false;
+        int i=0;
+        int ind = 0;
+        for (Employe e : ArrayEmployé){
+            ++i;
+            if (e.getMatricule()==Matricule){
+                ex =true;
+                ind = i;
+            }
+        }
+        if (ex){
+            System.out.println("---------- Modification d'employé ----------");
+            System.out.println("Donner la nouvelle Matricule :");
+            Matricule = sc.nextInt();
+            System.out.print("Donner un nouveau Nom  :");
+            String Nom=sc.next();
+            System.out.print("Donner le Prénom :");
+            String Prénom=sc.next();
+            System.out.print("Donner l'age :");
+            int Age = sc.nextInt();
+            System.out.print("Donner le salaire :");
+            double Salaire=sc.nextDouble();
+            Employe em = new Employe(Matricule,Nom,Prénom,Age,Salaire);
+            ArrayEmployé.set(ind,em);
+
+        }
+        else {
+            System.out.println("Employe indisponible !!");
+
+        }
+    }
+    //Supprimer un employé
+    public static void remove() {
+        if (ArrayEmployé.isEmpty()) {
+            System.out.print("Vide !!");
+        } else {
+            System.out.print("Entrer le matricule de l'employeur que vous avez supprimé : ");
+            int Matricule = sc.nextInt();
+
+            for (int i = 0; i < ArrayEmployé.size(); i++) {
+                if (Matricule == ArrayEmployé.get(i).getMatricule()) {
+                    ArrayEmployé.remove(i);
+                    System.out.print("La Supression d'employe fait avec succes .\n");
+
+                }
+            }
+        }
+    }
+
+
+
+//Pour afficher un employé
+   public static void afficherEmploye () {
+        System.out.print("Entrer  Matricule d'employé pour affiché :");
+        int Matricule = sc.nextInt();
+        int i = 0;
+        for (Employe e : ArrayEmployé) {
+            i++;
+            if (e.getMatricule() == Matricule) {
+                System.out.println("Les infos de l'employé  est :\n" + e.toString());
+            } else {
+                System.out.println("Employé indisponible ");
+            }
+        }
+    }
+//Pour afficher tous les employés
+    public static void affichertous(){
+        if(ArrayEmployé.isEmpty()){
+            System.out.println("La liste est vide.");
+
+        }else {
+            for (Employe a : ArrayEmployé){
+                if (ArrayEmployé.size() !=0){
+                    System.out.println(a.toString());
+                }
+            }
+        }
+    }
+    //Afficher salaire
+    public static void afficherSalaire () {
+        int N = 0;
+        if (ArrayEmployé.isEmpty()) {
+            System.out.print("Vide !! \n");
+
+        } else {
+
+            for (int i = 0; i < ArrayEmployé.size(); i++) {
+                if (ArrayEmployé.get(i).getSalaire() > 10000) {
+                    N += 1;
+                }
+            }
+            System.out.println("Le nombre des employés ayant un salaire qui dépasse 10000 est : " + N + "\n");
+        }
+    }
+    //Afficher l’employé le plus âgé
+    public static int plusAge() {
+        Employe emp = new Employe();
+        int maxAge = emp.getAge();
+        for (Employe i : ArrayEmployé) {
+            if (i.getAge() > maxAge) {
+                maxAge = i.getAge();
+            }
+        }
+        return maxAge;
+    }
+    //Afficher l’employé le moins âgé
+    public static int moinsAge() {
+        Employe emp = new Employe();
+        int minAge = emp.getAge();
+        for (Employe i : ArrayEmployé) {
+            if (i.getAge() < minAge) {
+                minAge = i.getAge();
+            }
+        }
+        return minAge;
+    }
+}
+
+
+
+
+
+
+
+
+
